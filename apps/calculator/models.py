@@ -4,6 +4,7 @@ from django.db import models
 # Modelo de diagnostico de un usuario
 # TODO: Falta realizar la relacion entre un user y el diagnostico
 
+
 class Diagnostico(models.Model):
     LOW_WEIGHT = 'Bajo peso'
     NORMAL_WEIGHT = 'Peso normal'
@@ -40,14 +41,8 @@ class Diagnostico(models.Model):
             self.estado = self.OBESITY
 
     def save(self, *args, **kwargs):
-
-        # Se calcula el imc
         self.calc_imc()
-
-        # Comparacion de pesos para asignar uno
         self.compare_imc()
-
-        # Guardar nuevos datos en BD
         super().save(*args, **kwargs)
 
     class Meta:
