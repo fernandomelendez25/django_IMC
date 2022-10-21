@@ -17,7 +17,7 @@ class Diagnostico(models.Model):
         (OBESITY, 'Obesidad'),
     ]
             
-    fecha_diagnostico = models.DateField(default = lambda: datetime.date.today(), blank=True)
+    fecha_diagnostico = models.DateField(auto_now_add=True, blank=True)
     estatura = models.FloatField(blank=False, null=False)
     peso = models.FloatField(blank=False, null=False)
     imc = models.FloatField(blank = True, null = False)
@@ -49,4 +49,5 @@ class Diagnostico(models.Model):
         # Guardar nuevos datos en BD
         super().save(*args, **kwargs)
         
-    
+    class Meta:
+        ordering = ['id']
