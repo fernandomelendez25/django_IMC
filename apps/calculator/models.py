@@ -2,6 +2,8 @@ from random import choices
 from django.db import models
 import datetime
 
+# Modelo de diagnostico de un usuario
+# TODO: Falta realizar la relacion entre un user y el diagnostico
 class Diagnostico(models.Model):
     LOW_WEIGHT = 'Bajo peso'
     NORMAL_WEIGHT = 'Peso normal'
@@ -21,9 +23,11 @@ class Diagnostico(models.Model):
     imc = models.FloatField(blank = True, null = False)
     estado = models.CharField(max_length = 15, choices=estadoPeso, blank=True, null=False)
     
+    # Funcion para calcular el imc
     def calc_imc(self):
         self.imc = self.peso / ((self.estatura)**2)
     
+    # Funcion para comparar el IMC y asignar peso
     def compare_imc(self):
         if 0 <= self.imc < 18.5:
             self.estado = self.LOW_WEIGHT
