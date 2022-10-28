@@ -28,3 +28,8 @@ class CalcAndSaveView(View):
             print(data)
             return JsonResponse(data, safe=False)
         return JsonResponse({"error": "Not a valid request"}, status=400)
+
+class Nav(View):
+    def get(self, request, *args, **kwargs):
+        context = {}
+        return render(request, 'base.html', context)
