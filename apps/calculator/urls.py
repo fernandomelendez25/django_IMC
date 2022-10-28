@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import CalculateView
+from .views import CalculatorView
 
 app_name = "calculator"
 
 urlpatterns = [
-    path('', CalculateView.as_view(), name="home")
+    path('', CalculatorView.as_view(), name="home")
 ]
