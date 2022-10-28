@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,12 +13,12 @@
       crossorigin="anonymous"
     />
 
-    {% load static %} {% block css %} {% endblock %}
+    {% block css %} {% endblock %}
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-success p-3">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">IMC Calculator</a>
+        <a class="navbar-brand" href="#">Healthy Life</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -31,6 +32,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          {% with request.resolver_match.url_name as url_name %}
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <a class="nav-link mx-2 active" aria-current="page" href="#"
@@ -38,15 +40,16 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-2 active" href="#">Historial</a>
+              <a class="nav-link mx-2" href="#">Historial</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-2 active" href="#">Iniciar Sesion</a>
+              <a class="nav-link mx-2" href="#">Iniciar Sesion</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-2 active" href="#">Cerrar Sesion</a>
+              <a class="nav-link mx-2" href="#">Cerrar Sesion</a>
             </li>
           </ul>
+          {% endwith %}
         </div>
       </div>
     </nav>
