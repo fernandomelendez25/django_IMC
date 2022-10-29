@@ -1,10 +1,13 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import View
+from django.views.generic.edit import FormView
 from django.http import JsonResponse
 from django.core import serializers
-from .forms import CalcForm
+from .forms import CalcForm, CustomUserForm
 from .models import Diagnostico
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -41,7 +44,25 @@ class MainCalculatorView(View):
             'form': form
         }
         return render(request, 'calculadora/localCalculator.html', context)
-    
+
 # Vistas para visualizar los datos de la base de datos
 
 # Vistas de login y registro de usuarios
+
+
+class SignUpView(View):
+    def get(self, request, *args, **kwargs):
+        form = CustomUserForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'registration/signup.html', context)
+
+    def post(self, request, *args, **kwargs):
+        form = CustomUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = authenticate(
+                username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
+            login(request, user)
+            return redirect(to='calculator:home')

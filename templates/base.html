@@ -44,6 +44,7 @@
                 if
                 user.is_authenticated
                 %}
+                href="{% url 'calculator:index' %}"
                 {%
                 else
                 %}
@@ -59,11 +60,11 @@
               <a class="nav-link mx-2" href="#">Historial</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-2" href="#">Cerrar Sesion</a>
+              <a class="nav-link mx-2" href="{% url 'logout' %}">Cerrar Sesion</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link mx-2" href="#">Iniciar Sesion</a>
+              <a class="nav-link mx-2" href="{% url 'login' %}">Iniciar Sesion</a>
             </li>
             {% endif %}
           </ul>
