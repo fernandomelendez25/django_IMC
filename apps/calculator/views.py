@@ -34,17 +34,13 @@ class CalculatorView(View):
         return JsonResponse({"error": "Not a valid request"}, status=400)
 
 
-class CalcAndSaveView(View):
+class MainCalculatorView(View):
     def get(self, request, *args, **kwargs):
-        context = {}
-        return render(request, 'calculator.html', context)
-
-    def post(self, request, *args, **kwargs):
-        if self.request.is_ajax():
-            data = self.request.POST
-            print(data)
-            return JsonResponse(data, safe=False)
-        return JsonResponse({"error": "Not a valid request"}, status=400)
+        form = CalcForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'localCalculator.html', context)
 
 
 class Nav(View):
