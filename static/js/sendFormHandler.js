@@ -11,6 +11,7 @@ const imcClassOutput = document.getElementById("result-imc-class");
 
 // Listeners
 
+// Obtiene el valor de una cookie, usado para obtener el csrftoken
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -27,6 +28,8 @@ function getCookie(name) {
     return cookieValue;
 }
 
+// Llena los campos del area de resultados
+// data es el resultado de la peticion POST que devuelve el valor imc y imc_class
 const fillResults = (data) => {
     estaturaOutput.textContent = estaturaInput.value;
     pesoOutput.textContent = pesoInput.value;
@@ -34,6 +37,8 @@ const fillResults = (data) => {
     imcClassOutput.textContent = data.imc_class;
 }
 
+// Maneja el evento submit del formulario
+// Envia los datos del formulario al servidor y llena los campos del area de resultados
 calcForm.addEventListener('submit', (e) => {
     e.preventDefault();
     console.log("Listening");
@@ -57,8 +62,10 @@ calcForm.addEventListener('submit', (e) => {
     }).then(response => response.json()).then(data => {
         console.log(data);
         fillResults(data);
-    }
-    )
+    }).catch(error => {
+        console.log(error);
+    });
+    
 })
 
 
