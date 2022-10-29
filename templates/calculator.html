@@ -1,1 +1,71 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block title %} Calculadora IMC {% endblock %}
+
+{% block content %}
+    {% load crispy_forms_tags %}
+    <div class="container montserrat mt-5 row mx-auto">
+        <div class="col-12 col-md-4 offset-md-1 mt-md-4 bg-white p-4 shadow-lg rounded-4">
+            <form id="calc_form" method="POST">
+                <div class="mb-4 text-center">
+                    <h3>Calculadora IMC</h3>
+                </div>
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-md btn-block btn-primary">Calcular</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-md-4 mt-4 mb-md-0 mb-4 p-4 bg-white rounded-4 shadow-lg offset-md-1">
+            <div class="d-flex flex-column ">
+                <div class="text-center">
+                    <h3>Resultados</h3>
+                </div>
+                <div class="mt-4 ms-2 mt-md-5">
+                    <p>
+                        <span class="fw-bold">
+                            Estatura ingresada:
+                        </span>
+                        <span id="result-imc">
+                            23.1
+                        </span>
+                    </p>
+                </div>
+                <div class="mt-2 ms-2">
+                    <p>
+                        <span class="fw-bold">
+                            Peso ingresado:
+                        </span>
+                        <span id="result-imc">
+                            23.1
+                        </span>
+                    </p>
+                </div>
+                <div class="mt-2 ms-2">
+                    <p>
+                        <span class="fw-bold">
+                            IMC:
+                        </span>
+                        <span id="result-imc">
+                            23.1
+                        </span>
+                    </p>
+                </div>
+                <div class="mt-2 ms-2"><p>
+                    <span class="fw-bold">
+                        Estado:
+                    </span>
+                    <span id="result-imc">
+                        Obeso
+                    </span>
+                </p></div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/sendFormHandler.js' %}"></script>
+{% endblock %}

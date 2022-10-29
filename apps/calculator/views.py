@@ -2,12 +2,16 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.http import JsonResponse
 from django.core import serializers
+from .forms import CalcForm
 # Create your views here.
 
 
 class CalculatorView(View):
     def get(self, request, *args, **kwargs):
-        context = {}
+        form = CalcForm()
+        context = {
+            'form': form
+        }
         return render(request, 'calculator.html', context)
 
     def post(self, request, *args, **kwargs):
