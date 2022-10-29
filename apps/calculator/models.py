@@ -1,9 +1,10 @@
+from email.policy import default
 from random import choices
 from django.db import models
+from django.contrib.auth.models import User
 
 # Modelo de diagnostico de un usuario
 # TODO: Falta realizar la relacion entre un user y el diagnostico
-
 
 class Diagnostico(models.Model):
     LOW_WEIGHT = 'Bajo peso'
@@ -24,6 +25,7 @@ class Diagnostico(models.Model):
     imc = models.FloatField(blank=True, null=False)
     estado = models.CharField(
         max_length=15, choices=estadoPeso, blank=True, null=False)
+    owner = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 
     # Funcion para calcular el imc
     def calc_imc(self):
