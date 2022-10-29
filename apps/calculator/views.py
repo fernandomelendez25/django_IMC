@@ -9,7 +9,6 @@ from .models import Diagnostico
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
-# Create your views here.
 
 
 # Vistas para el calculo del IMC y almacenamiento en la base de datos
