@@ -31,8 +31,8 @@ function getCookie(name) {
 // Llena los campos del area de resultados
 // data es el resultado de la peticion POST que devuelve el valor imc y imc_class
 const fillResults = (data) => {
-    estaturaOutput.textContent = estaturaInput.value;
-    pesoOutput.textContent = pesoInput.value;
+    estaturaOutput.textContent = estaturaInput.value + " metros";
+    pesoOutput.textContent = pesoInput.value + " kg";
     imcOutput.textContent = data.imc;
     imcClassOutput.textContent = data.imc_class;
 }

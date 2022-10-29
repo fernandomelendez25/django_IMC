@@ -8,14 +8,14 @@ from .models import Diagnostico
 # Create your views here.
 
 
-# Vista para el calculo del IMC y almacenamiento en la base de datos
+# Vistas para el calculo del IMC y almacenamiento en la base de datos
 class CalculatorView(View):
     def get(self, request, *args, **kwargs):
         form = CalcForm()
         context = {
             'form': form
         }
-        return render(request, 'calcSend.html', context)
+        return render(request, 'calculadora/calcSend.html', context)
 
     def post(self, request, *args, **kwargs):
         if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
@@ -40,10 +40,8 @@ class MainCalculatorView(View):
         context = {
             'form': form
         }
-        return render(request, 'localCalculator.html', context)
+        return render(request, 'calculadora/localCalculator.html', context)
+    
+# Vistas para visualizar los datos de la base de datos
 
-
-class Nav(View):
-    def get(self, request, *args, **kwargs):
-        context = {}
-        return render(request, 'base.html', context)
+# Vistas de login y registro de usuarios
