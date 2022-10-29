@@ -28,6 +28,7 @@ class Diagnostico(models.Model):
     # Funcion para calcular el imc
     def calc_imc(self):
         self.imc = self.peso / ((self.estatura)**2)
+        self.imc = round(self.imc, 2)
 
     # Funcion para comparar el IMC y asignar peso
     def compare_imc(self):

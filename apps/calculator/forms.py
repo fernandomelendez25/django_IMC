@@ -10,7 +10,7 @@ class CalcForm(ModelForm):
         model = Diagnostico
         fields = ('estatura', 'peso')
         help_texts = {
-            'estatura': _('Ingresa tu estatura.'),
-            'peso': _('Ingresa tu peso.'),
+            'estatura': _('Ingresa tu estatura en metros.'),
+            'peso': _('Ingresa tu peso en kilogramos.'),
         }
         

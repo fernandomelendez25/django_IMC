@@ -1,25 +1,38 @@
+import json
 from django.shortcuts import render
 from django.views.generic import View
 from django.http import JsonResponse
 from django.core import serializers
 from .forms import CalcForm
+from .models import Diagnostico
 # Create your views here.
 
 
+# Vista para el calculo del IMC y almacenamiento en la base de datos
 class CalculatorView(View):
     def get(self, request, *args, **kwargs):
         form = CalcForm()
         context = {
             'form': form
         }
-        return render(request, 'calculator.html', context)
+        return render(request, 'calcSend.html', context)
 
     def post(self, request, *args, **kwargs):
-        if self.request.is_ajax():
-            data = self.request.POST
-            print(data)
-            return JsonResponse(data, safe=False)
+        if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            try:
+                data = json.loads(request.body)
+                imc = Diagnostico.objects.create(
+                    estatura=float(data['estatura']),
+                    peso=float(data['peso'])
+                )
+                imc.save()
+                data = serializers.serialize('json', [imc, ])
+                print(data)
+                return JsonResponse({'imc': imc.imc, 'imc_class': imc.estado}, status=200)
+            except (Exception) as e:
+                return JsonResponse({'error': 'Error al calcular el IMC'}, status=400)
         return JsonResponse({"error": "Not a valid request"}, status=400)
+
 
 class CalcAndSaveView(View):
     def get(self, request, *args, **kwargs):
@@ -32,6 +45,7 @@ class CalcAndSaveView(View):
             print(data)
             return JsonResponse(data, safe=False)
         return JsonResponse({"error": "Not a valid request"}, status=400)
+
 
 class Nav(View):
     def get(self, request, *args, **kwargs):

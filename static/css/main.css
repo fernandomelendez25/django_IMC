@@ -8,3 +8,7 @@ body {
 .montserrat {
     font-family: 'Montserrat', sans-serif;
 }
+
+label {
+    font-weight: bold;
+}
