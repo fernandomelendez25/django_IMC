@@ -26,7 +26,7 @@
               <form action="" method="POST">
                 {% csrf_token %} {{ form | crispy }}
                 <a href="{% url 'calculator:index' %}">Regresar a home</a> |
-                <a href="{% url 'calculator:index' %}">Ir al login</a>
+                <a href="{% url 'login' %}">Ir al login</a>
                 <div class="d-flex justify-content-end">
                   <input
                     type="submit"
