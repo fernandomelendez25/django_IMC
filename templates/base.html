@@ -18,7 +18,12 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-success p-3">
       <div class="container-fluid">
-        <a class="navbar-brand font-weight-bold" href="{% url 'calculator:home' %}"
+        <a class="navbar-brand font-weight-bold" 
+        {% if user.is_authenticated %}
+          href="{% url 'calculator:home' %}"
+        {% else %}
+          href="{% url 'calculator:index' %}"
+          {% endif %}
           >Healthy Life</a
         >
         <button
@@ -40,24 +45,17 @@
               <a
                 class="nav-link mx-2 active"
                 aria-current="page"
-                {%
-                if
-                user.is_authenticated
-                %}
-                href="{% url 'calculator:index' %}"
-                {%
-                else
-                %}
-                href="{% url 'calculator:home' %}"
-                {%
-                endif
-                %}
-                >Home</a
+                {% if user.is_authenticated %}
+                  href="{% url 'calculator:home' %}"
+                {% else %}
+                  href="{% url 'calculator:index' %}"
+                {% endif %}
+                >Inicio</a
               >
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link mx-2" href="#">Historial</a>
+              <a class="nav-link mx-2" href="{% url 'calculator:diagnosticos' %}">Historial</a>
             </li>
             <li class="nav-item">
               <a class="nav-link mx-2" href="{% url 'logout' %}">Cerrar Sesion</a>

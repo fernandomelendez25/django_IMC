@@ -44,6 +44,15 @@ class MainCalculatorView(View):
 
 # Vistas para visualizar los datos de la base de datos
 
+class DiagnosticoListView(LoginRequiredMixin, ListView):
+    model = Diagnostico
+    template_name = 'calculadora/diagnostico_list.html'
+    context_object_name = 'diagnosticos'
+    paginate_by = 3
+
+    def get_queryset(self):
+        return Diagnostico.objects.filter(owner=self.request.user).order_by('-id')
+
 # Vistas de login y registro de usuarios
 
 
