@@ -15,7 +15,7 @@
         'PORT':'3306'
     }
 ```
-5. Como siguiente paso debemos agregar un archivo dentro de la carpeta core, con el nombre de ".env" y dentro de el escribiremos los siguientes datos:
+5. Como siguiente paso debemos agregar un archivo dentro de la carpeta core, con el nombre de **.env** y dentro de el escribiremos los siguientes datos:
 ```.env
 SECRET_KEY=cualquierllavesecretadeejemplo
 DEBUG=True
