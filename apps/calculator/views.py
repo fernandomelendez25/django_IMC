@@ -48,7 +48,7 @@ class DiagnosticoListView(LoginRequiredMixin, ListView):
     model = Diagnostico
     template_name = 'calculadora/diagnostico_list.html'
     context_object_name = 'diagnosticos'
-    paginate_by = 3
+    paginate_by = 5
 
     def get_queryset(self):
         return Diagnostico.objects.filter(owner=self.request.user).order_by('-id')

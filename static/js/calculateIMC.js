@@ -9,6 +9,8 @@ const pesoOutput = document.getElementById("result-peso");
 const imcOutput = document.getElementById("result-imc");
 const imcClassOutput = document.getElementById("result-imc-class");
 
+// Variables para el calculo del IMC
+const imc = 32.5;
 
 // Llena los campos del area de resultados
 // data es el resultado de la peticion POST que devuelve el valor imc y imc_class
@@ -34,7 +36,7 @@ calcForm.addEventListener('submit', (e) => {
         return;
     }
 
-    const imc = peso / (estatura * estatura);
+    const imc = (peso / (estatura * estatura)).toFixed(2);
     const imcClass = getIMCClass(imc);
 
     fillResults({

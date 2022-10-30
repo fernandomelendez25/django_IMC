@@ -41,7 +41,6 @@ const fillResults = (data) => {
 // Envia los datos del formulario al servidor y llena los campos del area de resultados
 calcForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log("Listening");
     const peso = pesoInput.value;
     const estatura = estaturaInput.value;
     const data = {
@@ -50,6 +49,8 @@ calcForm.addEventListener('submit', (e) => {
     }
     console.log(data);
     const csrftoken = getCookie('csrftoken');
+
+    // Envia los datos del formulario al servidor mediante la API fetch de JS
     fetch("/", {
         method: 'POST',
         credentials: 'same-origin',
@@ -59,13 +60,13 @@ calcForm.addEventListener('submit', (e) => {
             'X-CSRFToken': csrftoken,
         },
         body: JSON.stringify(data)
-    }).then(response => response.json()).then(data => {
-        console.log(data);
-        fillResults(data);
-    }).catch(error => {
-        console.log(error);
-    });
-    
+    }).then(response => response.json())
+        .then(data => {
+            fillResults(data);
+        }).catch(error => {
+            console.log(error);
+        });
+
 })
 
 
