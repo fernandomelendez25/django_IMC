@@ -2,7 +2,7 @@
 
 1. Primero debemos clonar este repositorio o descargar el archivo zip.
 2. Luego crea un entorno virtual para utilizar los paquetes a usar en el server (puedes usar venv o virtualenv con Python).
-3. Luego de ello en el directorio raiz del proyecto ejecutamos el comando pip install -r requirements.txt
+3. Luego de ello enciende el entorno virtual y en el directorio raiz del proyecto ejecutamos el comando pip install -r requirements.txt
 4. Luego dentro de la carpeta core, en el settings.py en la sección de databases dentro de el sustituiremos todo de la siguiente forma: 
  
 ```python
